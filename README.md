@@ -26,6 +26,7 @@ Options:
 
   -o    Output file name (defaults to "SW_PARSE.txt")
 
+
 To align and do nothing else:
 ```bash
 ./goAlign -a a.fasta -b b.fasta -p 25
