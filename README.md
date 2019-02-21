@@ -43,3 +43,27 @@ To align and output the entire score matrix to matrix.mat:
 ```
 
 Run parameters and a timer are piped to stderr
+
+### Affine gap penalty ###
+affine does the same thing as goAlign, except uses a linear gap penalty as opposed to a constant penalty. This is more widely used, but is slower and isn't necessary for usage in C3POa. Nevertheless, I have included it here in case it needs to be used down the line. The penalty and outfile options are slightly different:
+
+  -o    Gap open penalty (defaults to 25)
+
+  -e    Gap extend penalty (defaults to 1)
+
+  -out    Output file name (defaults to "SW_PARSE.txt")
+
+affine can be built with
+```bash
+make affine
+```
+
+You can install goAlign with
+```bash
+sudo make install
+```
+
+You can remove goAlign and affine executables with
+```bash
+make clean
+```
