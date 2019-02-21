@@ -44,17 +44,8 @@ affine does the same thing as goAlign, except uses a linear gap penalty as oppos
   -out    Output file name (defaults to "SW_PARSE.txt")  
 ```
 
-affine can be built with
-```bash
-make affine
-```
+affine can be built with `make affine`
 
-You can install goAlign with
-```bash
-sudo make install
-```
+You can install goAlign with `sudo make install`
 
-You can remove goAlign and affine executables with
-```bash
-make clean
-```
+You can remove goAlign and affine executables with `make clean`
