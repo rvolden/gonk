@@ -13,7 +13,7 @@ import (
 // Command line arguments
 var seqA = flag.String("a", "", "First sequence to align")
 var seqB = flag.String("b", "", "Second sequence to align")
-var diag = flag.Bool("d", false, "Exclude the main diagonal")
+var diag = flag.Bool("d", false, "Use to exclude the main diagonal")
 var penalty = flag.Int("p", 25, "Gap open and extend penalty")
 var mat = flag.Bool("m", false, "Output entire matrix to stdout")
 var out = flag.String("o", "SW_PARSE.txt", "Where to output file")
@@ -116,9 +116,9 @@ func populate(matches [][]int, seqA, seqB string) [][]int {
 
 func sums(matches [][]int) []int {
     // Gives summed scores along diagonals
-    sums := make([]int, len(matches[0]))
-    for i := 0; i < len(matches); i++ {
-        for j := i; j < len(matches[0]); j++ {
+    sums := make([]int, len(matches))
+    for i := 0; i < len(matches[0]); i++ {
+        for j := i; j < len(matches); j++ {
             sums[j-i] += matches[i][j]
         }
     }
