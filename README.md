@@ -41,7 +41,7 @@ affine does the same thing as goAlign, except uses a linear gap penalty as oppos
 ```
   -o    Gap open penalty (defaults to 25)  
   -e    Gap extend penalty (defaults to 1)  
-  -out    Output file name (defaults to "SW_PARSE.txt")  
+  -out  Output file name (defaults to "SW_PARSE.txt")  
 ```
 
 affine can be built with `make affine`
