@@ -41,6 +41,9 @@ func fasta_reader(seqFile *string) (seqs []fasta) {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
+        if line == "" {
+            continue
+        }
         // look for >
 		if line[0] == 62 {
             // make a slice entry with no seq
