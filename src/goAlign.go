@@ -64,7 +64,7 @@ func makeMatrix(n, m int) [][]int {
     return matrix
 }
 
-func scoreMax(scores [4]int) int {
+func maxScore(scores [4]int) int {
     // gives the max value from an array
     max := 0
     for _, score := range scores {
@@ -106,7 +106,7 @@ func populate(matches [][]int, seqA, seqB string) [][]int {
                 potential[0] = matches[i-1][j-1] + score // back
                 potential[1] = matches[i-1][j] - *penalty // left
                 potential[2] = matches[i][j-1] - *penalty // above
-                max := scoreMax(potential)
+                max := maxScore(potential)
                 matches[i][j] = max
             }
         }
