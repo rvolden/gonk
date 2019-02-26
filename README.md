@@ -51,4 +51,4 @@ You can install goAlign with `sudo make install`
 You can remove goAlign and affine executables with `make clean`
 
 ### Comparison to old Water aligner ###
-![plot](https://github.com/rvolden/goAlign/blob/master/figs/alignTimeComparison.png "plot")
+![Speed comparison](https://github.com/rvolden/goAlign/blob/master/figs/alignTimeComparison.png "Speed comparison")
