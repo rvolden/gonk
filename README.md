@@ -49,3 +49,6 @@ affine can be built with `make affine`
 You can install goAlign with `sudo make install`
 
 You can remove goAlign and affine executables with `make clean`
+
+### Comparison to old Water aligner ###
+![plot](https://github.com/rvolden/goAlign/figs/alignTimeComparison.png "plot")
