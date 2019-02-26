@@ -12,7 +12,7 @@ goAlign takes two sequences, populates a score matrix for the alignment, and sum
 Options:
 ```
    -a    First fasta file to align (required)  
-   -b  Added figure  Second fasta file to align (required)  
+   -b    Second fasta file to align (required)  
    -d    Use to exclude the main diagonal (it will be set to zero)  
    -m    Use to output the entire score matrix to stdout  
    -p    Penalty for either gap open or extend (defaults to 25)  
