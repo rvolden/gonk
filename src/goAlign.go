@@ -119,9 +119,9 @@ func populate(matches [][]int, seqA, seqB string) [][]int {
 
 func sums(matches [][]int) []int {
     // Gives summed scores along diagonals
-    sums := make([]int, len(matches))
-    for i := 0; i < len(matches[0]); i++ {
-        for j := i; j < len(matches); j++ {
+    sums := make([]int, len(matches[0]))
+    for i := 0; i < len(matches); i++ {
+        for j := i; j < len(matches[0]); j++ {
             sums[j-i] += matches[i][j]
         }
     }

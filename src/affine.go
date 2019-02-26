@@ -5,6 +5,7 @@ import (
     "flag"
     "bufio"
     "os"
+    "log"
     "time"
     "strings"
 )
@@ -12,7 +13,7 @@ import (
 // Command line arguments
 var seqA = flag.String("a", "", "First sequence to align")
 var seqB = flag.String("b", "", "Second sequence to align")
-var diag = flag.Bool("d", false, "Include the main diagonal")
+var diag = flag.Bool("d", false, "Use to exclude the main diagonal")
 var open = flag.Int("o", 25, "Gap open penalty")
 var ext = flag.Int("e", 1, "Gap extend penalty")
 var mat = flag.Bool("m", false, "Output entire matrix to stdout")
@@ -67,7 +68,7 @@ func makeMatrix(n, m int) [][]int {
     return matrix
 }
 
-func max3(scores [3]int) int {
+func maxScore(scores [3]int) int {
     max := 0
     for _, score := range scores {
         if score > max {
@@ -123,10 +124,10 @@ func populate(matches, gapA, gapB [][]int, seqA, seqB string) [][]int {
                         potential[1] = -*open - *ext + gapA[i-1][j]
                         potential[2] = -*ext + gapB[i-1][j]
                     }
-                    maxes[k] = max3(potential)
+                    maxes[k] = maxScore(potential)
                     matrix[i][j] = maxes[k]
                 }
-                toAdd := max3(maxes)
+                toAdd := maxScore(maxes)
                 matches[i][j] = toAdd
             }
         }
@@ -136,9 +137,9 @@ func populate(matches, gapA, gapB [][]int, seqA, seqB string) [][]int {
 
 func sums(matches [][]int) []int {
     // Gives summed scores along diagonals
-    sums := make([]int, len(matches))
-    for i := 0; i < len(matches[0]); i++ {
-        for j := i; j < len(matches); j++ {
+    sums := make([]int, len(matches[0]))
+    for i := 0; i < len(matches); i++ {
+        for j := i; j < len(matches[0]); j++ {
             sums[j-i] += matches[i][j]
         }
     }
@@ -169,6 +170,9 @@ func main() {
     // start timer and parse flags
     start := time.Now()
     flag.Parse()
+    if *seqA == "" || *seqB == "" {
+        log.Fatal("Please enter sequences\n")
+    }
 
     // read fasta files and get both seqs
     first := fasta_reader(seqA)[0].seq
