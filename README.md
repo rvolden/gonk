@@ -1,5 +1,5 @@
 # gonk
-gonk (go for new peaks) is a R2C2 Smith-Waterman aligner that outputs a list of summed scores
+gonk (**go** for **n**ew pea**k**s) is a R2C2 Smith-Waterman aligner that outputs a list of summed scores
 
 ### Dependencies ###
 - [Go](https://golang.org/dl/)
