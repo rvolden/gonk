@@ -51,4 +51,4 @@ You can install gonk with `sudo make install`
 You can remove gonk and affine executables with `make clean`
 
 ### Comparison to old Water aligner ###
-![Speed comparison](https://github.com/rvolden/gonk/blob/master/figs/alignTimeComparison.png "Speed comparison")
+![Speed comparison](https://github.com/rvolden/gonk/blob/master/figs/alignTimeComp.png "Speed comparison")
