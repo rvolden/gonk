@@ -1,11 +1,11 @@
 align :
-	go build src/goAlign.go
+	go build src/gonk.go
 
 affine :
 	go build src/affine.go
 
 clean :
-	rm -f goAlign affine
+	rm -f gonk affine
 
 install :
-	cp goAlign /usr/bin/
+	cp gonk /usr/bin/
