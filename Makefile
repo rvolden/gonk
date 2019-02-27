@@ -1,4 +1,4 @@
-align :
+gonk :
 	go build src/gonk.go
 
 affine :
