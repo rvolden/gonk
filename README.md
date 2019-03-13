@@ -1,4 +1,4 @@
-# <img src="https://github.com/rvolden/gonk/blob/master/figs/gonkLogo.png" width="80" height="40" />
+# <img src="https://github.com/rvolden/gonk/blob/master/figs/gonkLogo.png" width="150" height="75" />
 gonk (**go** for **n**ew pea**k**s) is a R2C2 Smith-Waterman aligner that outputs a list of summed scores
 
 ### Dependencies ###
