@@ -7,7 +7,7 @@ import (
     "os"
     "log"
     "time"
-    "strings"
+    str "strings"
 )
 
 // Command line arguments
@@ -44,8 +44,7 @@ func fasta_reader(seqFile *string) (seqs []fasta) {
         if line == "" {
             continue
         }
-        // look for >
-		if line[0] == 62 {
+		if line[0] == '>' {
             // make a slice entry with no seq
 			var entry = fasta{string(line[1:]), ""}
 			seqs = append(seqs, entry)
@@ -131,7 +130,7 @@ func sums(matches [][]int) []int {
 func printMatrix(matchMatrix [][]int) {
     // Prints out the entire score matrix to stdout
     for f := 0; f < len(matchMatrix); f++ {
-        row := strings.Trim(strings.Join(strings.Fields(fmt.Sprint(matchMatrix[f])), " "),"[]")
+        row := str.Trim(str.Join(str.Fields(fmt.Sprint(matchMatrix[f])), " "),"[]")
         fmt.Println(row)
     }
 }
