@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"io"
 	str "strings"
 	"time"
 )
@@ -32,25 +33,26 @@ func check(e error) {
 	}
 }
 
-func fasta_reader(seqFile *string) (seqs []fasta) {
-	// open up the file
+func readFasta(seqFile *string) (seqs []fasta) {
+    // open up the file
 	file, err := os.Open(*seqFile)
 	check(err)
 	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if line == "" {
-			continue
-		}
+	reader := bufio.NewReader(file)
+	for {
+        line, e := reader.ReadString('\n')
+        if e == io.EOF { break }
+        line = str.TrimSuffix(line, "\n")
+        if line == "" { continue }
+        // look for >
 		if line[0] == '>' {
-			// make a slice entry with no seq
+            // make a slice entry with no seq
 			var entry = fasta{string(line[1:]), ""}
 			seqs = append(seqs, entry)
 		} else {
-			// if on a line without >, add the sequence
-			// to the last header
+            // if on a line without >, add the sequence
+            // to the last header
 			seqs[len(seqs)-1].add_seq(line)
 		}
 	}
