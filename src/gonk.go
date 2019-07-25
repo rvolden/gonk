@@ -158,8 +158,8 @@ func main() {
 	}
 
 	// read fasta files and get both seqs
-	first := fasta_reader(seqA)[0].seq
-	second := fasta_reader(seqB)[0].seq
+	first := readFasta(seqA)[0].seq
+	second := readFasta(seqB)[0].seq
 	n, m := len(first), len(second)
 
 	// construct the alignment matrix (2D slice) and populate
