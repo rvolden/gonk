@@ -4,9 +4,9 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"os"
-	"io"
 	str "strings"
 	"time"
 )
@@ -34,25 +34,29 @@ func check(e error) {
 }
 
 func readFasta(seqFile *string) (seqs []fasta) {
-    // open up the file
+	// open up the file
 	file, err := os.Open(*seqFile)
 	check(err)
 	defer file.Close()
 
 	reader := bufio.NewReader(file)
 	for {
-        line, e := reader.ReadString('\n')
-        if e == io.EOF { break }
-        line = str.TrimSuffix(line, "\n")
-        if line == "" { continue }
-        // look for >
+		line, e := reader.ReadString('\n')
+		if e == io.EOF {
+			break
+		}
+		line = str.TrimSuffix(line, "\n")
+		if line == "" {
+			continue
+		}
+		// look for >
 		if line[0] == '>' {
-            // make a slice entry with no seq
+			// make a slice entry with no seq
 			var entry = fasta{string(line[1:]), ""}
 			seqs = append(seqs, entry)
 		} else {
-            // if on a line without >, add the sequence
-            // to the last header
+			// if on a line without >, add the sequence
+			// to the last header
 			seqs[len(seqs)-1].add_seq(line)
 		}
 	}
@@ -83,16 +87,16 @@ func populate(matches [][]int, seqA, seqB string) [][]int {
 	// Fills in score matrix
 	// map to make indexing score matrix easier
 	baseInt := map[int]int{
-		// A, C, G, T
-		65: 0, 67: 1, 71: 2, 84: 3,
+		'A': 0, 'C': 1, 'G': 2, 'T': 3, 'N': 4,
 	}
 
 	// match and mismatch scores
 	scores := [][]int{
-		{5, -4, -4, -4},
-		{-4, 5, -4, -4},
-		{-4, -4, 5, -4},
-		{-4, -4, -4, 5},
+		{5, -4, -4, -4, 0},
+		{-4, 5, -4, -4, 0},
+		{-4, -4, 5, -4, 0},
+		{-4, -4, -4, 5, 0},
+		{0, 0, 0, 0, 0},
 	}
 
 	// goes through and gets scores
