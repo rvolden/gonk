@@ -143,6 +143,10 @@ func printMatrix(matchMatrix [][]int) {
 
 func writeScores(sums []int) {
 	// Writes the summed scores to the outfile
+	fi, err := os.Stat(*out)
+	if fi.Mode().IsDir() {
+		*out += "/SW_PARSE.txt"
+	}
 	outFile, err := os.Create(*out)
 	check(err)
 	outWrite := bufio.NewWriter(outFile)
